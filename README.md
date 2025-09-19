@@ -1,32 +1,31 @@
-# Conversational SQL Database Agent 🤖
+# 🤖 Conversational SQL Database Agent
 
 [![Python Version](https://img.shields.io/badge/Python-3.10%2B-blue.svg)](https://www.python.org/)
 [![Framework](https://img.shields.io/badge/Framework-Streamlit-red.svg)](https://streamlit.io)
 [![Library](https://img.shields.io/badge/Library-LangChain-green.svg)](https://www.langchain.com/)
-[![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-An intelligent, conversational AI agent that allows you to chat with your SQL database in natural language. Instead of writing complex SQL queries, you can simply ask questions, and the agent will find the answers for you. It even remembers the context of your conversation for follow-up questions.
-
----
-
-### Demo
-
-<!-- 
-**IMPORTANT**: Create a short screen recording (GIF) of you interacting with the app and place it here. This is the best way to showcase your project.
-Tools like LICEcap or ScreenToGif are great for this.
--->
-![Agent Demo GIF](https://user-images.githubusercontent.com/12345/your-demo-gif-url-here.gif) 
-*(Replace this with a real GIF of your application in action!)*
+This project is an intelligent, conversational AI agent that empowers you to chat with your SQL database using natural language. Forget writing complex SQL queries—just ask questions and get answers. The agent features conversational memory, allowing it to understand follow-up questions and provide context-aware responses.
 
 ---
 
-### ✨ Features
+### 🎥 Live Demo
 
-*   **Natural Language to SQL:** Ask questions in plain English, and the agent generates, validates, and executes the appropriate SQL query.
-*   **Conversational Memory:** The agent remembers the last 20 turns of your conversation, allowing you to ask follow-up questions naturally.
-*   **Safety Guardrails:** The agent is configured with a read-only system prompt, preventing it from executing any destructive commands (`DELETE`, `UPDATE`, `DROP`, etc.).
-*   **Schema Aware:** The agent automatically inspects the database schema to write accurate and relevant queries.
-*   **User-Friendly UI:** A clean and simple chat interface built with Streamlit.
+This screenshot demonstrates the agent's core conversational memory feature, allowing it to understand and answer a follow-up question.
+
+<p align="center">
+  <img src="agent-demo.png" alt="Conversational SQL Agent Demo" width="750"/>
+</p>
+
+---
+
+### ✨ Key Features
+
+*   **Natural Language to SQL:** Translates plain English questions into precise SQL queries.
+*   **True Conversational Memory:** Remembers the context of the conversation to answer follow-up questions accurately.
+*   **Safety First Guardrails:** Built with a read-only system prompt to prevent any destructive database operations (`DELETE`, `UPDATE`, `DROP`, etc.).
+*   **Schema Aware:** Intelligently inspects the database schema to write correct and relevant queries.
+*   **User-Friendly Interface:** A clean and intuitive chat interface powered by Streamlit.
 
 ---
 
@@ -35,97 +34,95 @@ Tools like LICEcap or ScreenToGif are great for this.
 *   **Backend:** Python
 *   **AI Framework:** LangChain
 *   **LLM:** Google Gemini Pro
-*   **UI:** Streamlit
+*   **UI Framework:** Streamlit
 *   **Database:** SQLite
 
 ---
 
-### 🚀 Getting Started
+### 🚀 Quick Start Guide
 
-Follow these instructions to set up and run the project on your local machine.
+Follow these steps to get the project running on your local machine.
 
-#### **1. Prerequisites**
+#### 1. Prerequisites
 
-*   Python 3.10 or higher
-*   Access to the Google Gemini API and a valid API Key.
+*   Python 3.10 or higher installed.
+*   A Google Gemini API Key. You can get one from [Google AI Studio](https://aistudio.google.com/app/apikey).
 
-#### **2. Clone the Repository**
+#### 2. Setup
+
+First, clone the repository and navigate into the project directory.
 
 ```bash
-git clone https://github.com/your-username/your-repo-name.git
-cd your-repo-name
+git clone https://github.com/skyline-GTRr32/SQL-Database-Agent.git
+cd SQL-Database-Agent
 ```
 
-#### **3. Set Up the Virtual Environment**
+#### 3. Environment and Dependencies
 
-It's highly recommended to use a virtual environment to keep dependencies isolated.
+Create and activate a virtual environment, then install the required packages.
 
 ```bash
 # Create the virtual environment
-python -m venv venv
+python3 -m venv venv
 
-# Activate the virtual environment
+# Activate it
 # On macOS/Linux:
 source venv/bin/activate
 # On Windows:
 .\venv\Scripts\activate
-```
 
-#### **4. Install Dependencies**
-
-```bash
+# Install the dependencies
 pip install -r requirements.txt
 ```
 
-#### **5. Configure Environment Variables**
+#### 4. Configuration
 
-Create a file named `.env` in the root of the project directory. This file will hold your secret API key.
+Create a `.env` file in the root directory to store your API key securely.
 
 ```
+# .env
 GOOGLE_API_KEY="your_actual_google_api_key_here"
 ```
+> **Security Note:** The `.env` file is listed in `.gitignore` to ensure your secret key is never committed to the repository.
 
-> **Note:** The `.env` file is included in `.gitignore` to prevent you from accidentally committing your secret key to version control.
+#### 5. Database Setup
 
-#### **6. Create and Populate the Database**
-
-The project includes a SQL script to set up the database. Run the following command from your terminal:
+The project includes a `schema.sql` file to create and populate the SQLite database. Run this command from your terminal:
 
 ```bash
-# This command creates 'sales.db' and populates it using 'schema.sql'
+# This command creates 'sales.db' and populates it with sample data.
 sqlite3 sales.db < schema.sql
 ```
 
-#### **7. Run the Application**
+#### 6. Run the Application
 
-You are now ready to start the agent!
+You're all set! Launch the Streamlit application.
 
 ```bash
 streamlit run main.py
 ```
-
-Your web browser should automatically open to the application's local URL.
+The application will open automatically in your web browser.
 
 ---
 
 ### 💬 Example Conversation
 
-Here's an example of the agent's conversational memory in action:
+Here is a real example demonstrating the agent's conversational memory:
 
 > **You:**
-> List all the products in the 'Apparel' category.
+> `List all the products in the 'Apparel' category`
 
 > **🤖 Agent:**
-> Here are the products in the 'Apparel' category: 'Zephyr Jacket' and 'Orbit Backpack'.
+> `Here are the products in the 'Appearel' category: 'Zephyr Jacket' and 'Orbit Backpack'.`
 
 > **You:**
-> Now, which of those is more expensive?
+> `Now, which of those is more expensive?`
 
 > **🤖 Agent:**
-> The 'Zephyr Jacket' is more expensive at 8999 cents, compared to the 'Orbit Backpack' at 7499 cents.
+> `The 'Zephyr Jacket' is more expensive at 8999 cents, compared to the 'Orbit Backpack' at 7499 cents.`
 
 ---
 
 ### 📄 License
 
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
